@@ -1,0 +1,22 @@
+
+body {
+    background-color: #fafafa;
+}
+
+.nav-link,
+.navegacion-provisional a {
+    color: #174a83;
+}
+
+.navegacion-provisional {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.grafico-pendiente {
+    min-height: 220px;
+    display: grid;
+    place-items: center;
+}
