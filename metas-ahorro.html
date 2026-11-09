@@ -10,37 +10,75 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-light-subtle">
   <a class="visually-hidden-focusable" href="#contenido">Saltar al contenido</a>
-  <header class="container pt-3">
-    <nav class="navegacion-provisional" aria-label="Navegación provisional">
-      <a href="index.html"><strong>Ahorra</strong></a>
-      <a href="index.html">Inicio</a>
-      <a href="ingresos-gastos.html">Ingresos y gastos</a>
-      <a href="metas-ahorro.html" aria-current="page">Metas de ahorro</a>
-      <a href="estadisticas.html">Estadísticas</a>
-    </nav>
+  
+  <!-- Header Unificado -->
+  <header class="bg-white border-bottom sticky-top shadow-sm">
+    <div class="container navbar navbar-expand navbar-light py-2">
+      <a class="navbar-brand fw-bold text-primary fs-4 m-0 me-4" href="index.html">Ahorra</a>
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="ingresos-gastos.html">Ingresos y gastos</a></li>
+        <li class="nav-item"><a class="nav-link active fw-bold" href="metas-ahorro.html" aria-current="page">Metas de ahorro</a></li>
+        <li class="nav-item"><a class="nav-link" href="estadisticas.html">Estadísticas</a></li>
+      </ul>
+    </div>
   </header>
+
+  <!-- Contenido principal -->
   <main id="contenido" class="container py-4 flex-grow-1">
-    <h1>Metas de ahorro</h1>
-    <p class="text-secondary">Aquí se podrán crear y consultar objetivos de ahorro.</p>
+    <h1 class="mb-1 fw-bold text-dark">Metas de ahorro</h1>
+    <p class="text-secondary mb-4">Aquí se podrán crear y consultar objetivos de ahorro.</p>
+
+    <!-- Crear Meta -->
     <section aria-labelledby="crear-meta-titulo" class="mb-4">
-      <h2 id="crear-meta-titulo" class="h4">Crear una meta</h2>
-      <form id="form-meta" class="row g-3">
-        <div class="col-12 col-md-6"><label class="form-label" for="nombre-meta">Nombre de la meta</label><input
-            id="nombre-meta" name="nombre" class="form-control" type="text" placeholder="Ej.: Comprar notebook"></div>
-        <div class="col-12 col-md-3"><label class="form-label" for="objetivo">Monto objetivo</label><input id="objetivo"
-            name="objetivo" class="form-control" type="number" min="1"></div>
-        <div class="col-12 col-md-3"><label class="form-label" for="acumulado">Ahorro actual</label><input
-            id="acumulado" name="acumulado" class="form-control" type="number" min="0"></div>
-        <div><button type="button" class="btn btn-primary" disabled>Crear meta (pendiente)</button></div>
-      </form>
+      <div class="bg-white p-4 rounded-3 border shadow-sm">
+        <h2 id="crear-meta-titulo" class="h4 mb-3 fw-bold">Crear una meta</h2>
+        <form id="form-meta" class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label fw-medium" for="nombre-meta">Nombre de la meta</label>
+            <input id="nombre-meta" name="nombre" class="form-control" type="text" placeholder="Ej.: Comprar notebook">
+          </div>
+          <div class="col-12 col-md-3">
+            <label class="form-label fw-medium" for="objetivo">Monto objetivo</label>
+            <input id="objetivo" name="objetivo" class="form-control" type="number" min="1" placeholder="Ej.: 500000">
+          </div>
+          <div class="col-12 col-md-3">
+            <label class="form-label fw-medium" for="acumulado">Ahorro actual</label>
+            <input id="acumulado" name="acumulado" class="form-control" type="number" min="0" placeholder="Ej.: 50000">
+          </div>
+          <div class="col-12">
+            <button type="button" class="btn btn-primary fw-medium" disabled>Crear meta (pendiente)</button>
+          </div>
+        </form>
+      </div>
     </section>
+
+    <!-- Lista de Metas -->
     <section aria-labelledby="lista-metas-titulo">
-      <h2 id="lista-metas-titulo" class="h4">Mis metas</h2>
-      <p class="border rounded p-4 text-secondary" id="lista-metas">Sin metas creadas todavía.</p>
+      <div class="bg-white p-4 rounded-3 border shadow-sm">
+        <h2 id="lista-metas-titulo" class="h4 mb-3 fw-bold">Mis metas</h2>
+        <div class="border rounded-3 p-4 text-center text-secondary bg-light" id="lista-metas">
+          Sin metas creadas todavía.
+        </div>
+      </div>
     </section>
   </main>
+
+  <!-- Footer Unificado -->
+  <footer class="border-top mt-auto py-4 bg-white">
+    <div class="container text-center text-secondary small">
+      <div class="mb-2">
+        <a href="index.html" class="text-decoration-none text-secondary me-3">Inicio</a>
+        <a href="ingresos-gastos.html" class="text-decoration-none text-secondary me-3">Ingresos y Gastos</a>
+        <a href="metas-ahorro.html" class="text-decoration-none text-secondary me-3">Metas de Ahorro</a>
+        <a href="estadisticas.html" class="text-decoration-none text-secondary">Estadísticas</a>
+      </div>
+      <p class="mb-0">© 2026 Ahorra · Equipo NovaWeb · Proyecto Finanzas Personales</p>
+    </div>
+  </footer>
+
   <script src="assets/js/main.js" defer></script>
 </body>
 
