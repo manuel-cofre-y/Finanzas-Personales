@@ -1,0 +1,20 @@
+//almacenamiento de datos:
+
+// Obtener datos guardados
+
+const obtenerDatos = (clave) => {
+    try {
+        return JSON.parse(localStorage.getItem(clave)) || [];
+    } catch {
+        return [];
+    }
+};
+
+// Guardar datos
+const guardarDatos = (clave, datos) => {
+    localStorage.setItem(clave, JSON.stringify(datos));
+};
+
+// Cargar movimientos, y metas
+let movimientos = obtenerDatos("ahorra_movimientos");
+let metas = obtenerDatos("ahorra_metas");

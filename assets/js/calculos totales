@@ -1,0 +1,19 @@
+//calculo y suma de datos:
+
+
+const calcularTotales = () => {
+
+    const ingresos = movimientos
+        .filter(m => m.tipo === "ingreso")
+        .reduce((total, m) => total + Number(m.monto), 0);
+
+    const gastos = movimientos
+        .filter(m => m.tipo === "gasto")
+        .reduce((total, m) => total + Number(m.monto), 0);
+
+    return {
+        ingresos,
+        gastos,
+        disponible: ingresos - gastos
+    };
+};

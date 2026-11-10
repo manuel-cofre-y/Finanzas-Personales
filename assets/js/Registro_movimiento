@@ -1,0 +1,52 @@
+//registro movimiento
+
+const formMovimiento = document.getElementById("form-movimiento");
+
+if (formMovimiento) {
+
+    formMovimiento.addEventListener("submit", (evento) => {
+
+        evento.preventDefault();
+
+        const formulario = new FormData(formMovimiento);
+
+        const tipo = formulario.get("tipo");
+        const monto = Number(formulario.get("monto"));
+        const descripcion = formulario.get("descripcion").trim();
+        const categoria = formulario.get("categoria");
+        const fecha = formulario.get("fecha");
+
+        if (
+            !["ingreso", "gasto"].includes(tipo) ||
+            !Number.isFinite(monto) ||
+            monto <= 0 ||
+            !descripcion ||
+            !categoria ||
+            !fecha
+        ) {
+            alert("Por favor, completa correctamente todos los campos.");
+            return;
+        }
+
+        const movimiento = {
+            id: Date.now(),
+            tipo,
+            monto,
+            descripcion,
+            categoria,
+            fecha
+        };
+
+        movimientos.push(movimiento);
+
+        guardarDatos("ahorra_movimientos", movimientos);
+
+        formMovimiento.reset();
+
+        actualizarHistorial();
+        actualizarInicio();
+        actualizarEstadisticas();
+
+        alert("Movimiento registrado correctamente");
+    });
+}

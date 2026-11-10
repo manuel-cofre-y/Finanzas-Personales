@@ -1,0 +1,22 @@
+//formato_dinero y crear Elemento:
+
+// Formato de pesos chilenos
+const formatoCLP = (cantidad) => {
+    return new Intl.NumberFormat("es-CL", {
+        style: "currency",
+        currency: "CLP",
+        maximumFractionDigits: 0
+    }).format(cantidad);
+};
+
+// Crear elementos HTML
+const crearElemento = (etiqueta, texto, clase = "") => {
+    const elemento = document.createElement(etiqueta);
+    elemento.textContent = texto;
+
+    if (clase) {
+        elemento.className = clase;
+    }
+
+    return elemento;
+};
