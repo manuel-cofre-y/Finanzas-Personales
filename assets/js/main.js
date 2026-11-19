@@ -1,16 +1,11 @@
-/**
- * Ahorra · Integración del JavaScript de Finanzas Personales.
- * Reúne las funciones existentes del equipo en el archivo que cargan
- * index.html, ingresos-gastos.html, metas-ahorro.html y estadisticas.html.
- * Los datos se guardan en localStorage de este navegador.
- */
+
 (() => {
   "use strict";
 
   const CLAVE_MOVIMIENTOS = "ahorra_movimientos";
   const CLAVE_METAS = "ahorra_metas";
 
-  // Almacenamiento de datos (adaptado del código existente).
+  // Almacenamiento de datos 
   const obtenerDatos = (clave) => {
     try {
       const datos = JSON.parse(localStorage.getItem(clave));
@@ -60,8 +55,8 @@
     return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
   };
 
-  // Alertas visuales de Bootstrap 5.3, sin ventanas emergentes del navegador.
-  // El aviso aparece debajo del botón del formulario y se puede cerrar.
+  // Alertas visuales, Cambio de Manuel 
+  
   const mostrarAviso = (formulario, mensaje, variante = "success") => {
     const anterior = formulario.querySelector('[data-aviso-bootstrap]');
     if (anterior) anterior.remove();
@@ -103,7 +98,7 @@
     if (!resumen) return;
 
     const totales = calcularTotales();
-    // El HTML del equipo usa fs-3, no fs-4.
+    
     const tarjetas = resumen.querySelectorAll(".fs-3");
     if (tarjetas.length >= 3) {
       tarjetas[0].textContent = formatoCLP(totales.ingresos);
@@ -246,7 +241,7 @@
     });
   };
 
-  // Barras de estadísticas de gastos por categoría e ingresos/gastos.
+  
   const actualizarEstadisticas = () => {
     const graficos = document.querySelectorAll(".grafico-pendiente");
     if (graficos.length < 2) return;
