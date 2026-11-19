@@ -12,7 +12,7 @@
 
 <body class="d-flex flex-column min-vh-100 bg-light-subtle">
   <a class="visually-hidden-focusable" href="#contenido">Saltar al contenido</a>
-  
+
   <!-- Header Unificado -->
   <header class="bg-white border-bottom sticky-top shadow-sm">
     <div class="container navbar navbar-expand navbar-light py-2">
@@ -38,18 +38,18 @@
         <form id="form-meta" class="row g-3">
           <div class="col-12 col-md-6">
             <label class="form-label fw-medium" for="nombre-meta">Nombre de la meta</label>
-            <input id="nombre-meta" name="nombre" class="form-control" type="text" placeholder="Ej.: Comprar notebook">
+            <input id="nombre-meta" name="nombre" class="form-control" type="text" placeholder="Ej.: Comprar notebook" required>
           </div>
           <div class="col-12 col-md-3">
             <label class="form-label fw-medium" for="objetivo">Monto objetivo</label>
-            <input id="objetivo" name="objetivo" class="form-control" type="number" min="1" placeholder="Ej.: 500000">
+            <input id="objetivo" name="objetivo" class="form-control" type="number" min="1" step="1" placeholder="Ej.: 500000" required>
           </div>
           <div class="col-12 col-md-3">
             <label class="form-label fw-medium" for="acumulado">Ahorro actual</label>
-            <input id="acumulado" name="acumulado" class="form-control" type="number" min="0" placeholder="Ej.: 50000">
+            <input id="acumulado" name="acumulado" class="form-control" type="number" min="0" step="1" placeholder="Ej.: 50000">
           </div>
           <div class="col-12">
-            <button type="button" class="btn btn-primary fw-medium" disabled>Crear meta (pendiente)</button>
+            <button type="submit" class="btn btn-primary fw-medium">Crear meta</button>
           </div>
         </form>
       </div>
@@ -81,5 +81,4 @@
 
   <script src="assets/js/main.js" defer></script>
 </body>
-
 </html>

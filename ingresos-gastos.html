@@ -30,13 +30,13 @@
   <main id="contenido" class="container py-4 flex-grow-1">
     <h1 class="mb-1 fw-bold text-dark">Ingresos y gastos</h1>
     <p class="text-secondary mb-4">Sección para agregar ingresos y gastos y consultar el historial.</p>
-    
+
     <div class="row g-4">
       <!-- Formulario -->
       <section class="col-12 col-lg-5" aria-labelledby="nuevo-titulo">
         <div class="bg-white p-4 rounded-3 border shadow-sm">
           <h2 id="nuevo-titulo" class="h4 mb-3 fw-bold">Nuevo movimiento</h2>
-          
+
           <form id="form-movimiento">
             <div class="mb-3">
               <label for="tipo" class="form-label fw-medium">Tipo</label>
@@ -48,7 +48,7 @@
             </div>
             <div class="mb-3">
               <label for="monto" class="form-label fw-medium">Monto (CLP)</label>
-              <input id="monto" name="monto" type="number" min="1" class="form-control" placeholder="15000" required>
+              <input id="monto" name="monto" type="number" min="1" step="1" class="form-control" placeholder="15000" required>
             </div>
             <div class="mb-3">
               <label for="descripcion" class="form-label fw-medium">Descripción</label>
@@ -69,9 +69,9 @@
               <label for="fecha" class="form-label fw-medium">Fecha</label>
               <input id="fecha" name="fecha" type="date" lang="es-CL" class="form-control" required>
             </div>
-            <p class="text-secondary small mb-3">Formulario de prueba: todavía no almacena movimientos.</p>
-            
-            <button type="button" class="btn btn-primary w-100 fw-medium" disabled>Guardar (pendiente)</button>
+            <p class="text-secondary small mb-3">Los movimientos se guardan en este navegador.</p>
+
+            <button type="submit" class="btn btn-primary w-100 fw-medium">Guardar movimiento</button>
           </form>
         </div>
       </section>
@@ -80,7 +80,7 @@
       <section class="col-12 col-lg-7" aria-labelledby="historial-titulo">
         <div class="bg-white p-4 rounded-3 border shadow-sm h-100">
           <h2 id="historial-titulo" class="h4 mb-3 fw-bold">Historial</h2>
-          
+
           <div class="table-responsive">
             <table class="table table-hover align-middle border-top">
               <thead class="table-light">
@@ -89,11 +89,12 @@
                   <th>Descripción</th>
                   <th>Tipo</th>
                   <th class="text-end">Monto</th>
+                  <th class="text-end" data-columna="acciones">Acciones</th>
                 </tr>
               </thead>
               <tbody id="tabla-movimientos">
                 <tr>
-                  <td colspan="4" class="text-center text-secondary py-4">Sin registros todavía</td>
+                  <td colspan="5" class="text-center text-secondary py-4">Sin registros todavía</td>
                 </tr>
               </tbody>
             </table>
@@ -118,5 +119,4 @@
 
   <script src="assets/js/main.js" defer></script>
 </body>
-
 </html>
