@@ -10,95 +10,112 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-light-subtle">
   <a class="visually-hidden-focusable" href="#contenido">Saltar al contenido</a>
 
-  <header class="bg-white border-bottom">
-    <nav class="container py-3" aria-label="Navegación principal">
-      <a class="fs-5 fw-semibold text-decoration-none" href="index.html">Ahorra</a>
-      <ul class="nav mt-2 flex-wrap">
-        <li><a class="nav-link px-2 " href="index.html">Inicio</a></li>
-        <li><a class="nav-link px-2 fw-bold" href="ingresos-gastos.html" aria-current="page">Ingresos y gastos</a></li>
-        <li><a class="nav-link px-2 " href="metas-ahorro.html">Metas de ahorro</a></li>
-        <li><a class="nav-link px-2 " href="estadisticas.html">Estadísticas</a></li>
+  <!-- Header -->
+  <header class="bg-white border-bottom sticky-top shadow-sm">
+    <div class="container navbar navbar-expand navbar-light py-2">
+      <a class="navbar-brand fw-bold text-primary fs-4 m-0 me-4" href="index.html">Ahorra</a>
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link active fw-bold" href="ingresos-gastos.html" aria-current="page">Ingresos y gastos</a></li>
+        <li class="nav-item"><a class="nav-link" href="metas-ahorro.html">Metas de ahorro</a></li>
+        <li class="nav-item"><a class="nav-link" href="estadisticas.html">Estadísticas</a></li>
       </ul>
-    </nav>
+    </div>
   </header>
+
+  <!-- Contenido principal -->
   <main id="contenido" class="container py-4 flex-grow-1">
-    <h1>Ingresos y gastos</h1>
-    <p class="text-secondary">Sección para agregar ingresos y gastos y consultar el historial.</p>
+    <h1 class="mb-1 fw-bold text-dark">Ingresos y gastos</h1>
+    <p class="text-secondary mb-4">Sección para agregar ingresos y gastos y consultar el historial.</p>
+    
     <div class="row g-4">
+      <!-- Formulario -->
       <section class="col-12 col-lg-5" aria-labelledby="nuevo-titulo">
-        <h2 id="nuevo-titulo" class="h4">Nuevo movimiento</h2>
-       
-        <form id="form-movimiento">
-          <div class="mb-3">
-            <label for="tipo" class="form-label">Tipo</label>
-            <select id="tipo" name="tipo" class="form-select" required>
-              <option value="">Seleccionar...</option>
-              <option value="ingreso">Ingreso</option>
-              <option value="gasto">Gasto</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="monto" class="form-label">Monto (CLP)</label>
-            <input id="monto" name="monto" type="number" min="1" class="form-control" placeholder="15000" required>
-          </div>
-          <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <input id="descripcion" name="descripcion" type="text" class="form-control" placeholder="Ej.: Supermercado"
-              required>
-          </div>
-          <div class="mb-3">
-            <label for="categoria" class="form-label">Categoría</label>
-            <select id="categoria" name="categoria" class="form-select" required>
-              <option value="">Seleccionar...</option>
-              <option>Alimentación</option>
-              <option>Transporte</option>
-              <option>Vivienda</option>
-              <option>Entretenimiento</option>
-              <option>Otros</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha</label>
-            <input id="fecha" name="fecha" type="date" lang="es-CL" class="form-control" required>
-          </div>
-          <p class="text-secondary small">Formulario de prueba: todavía no almacena movimientos.</p>
+        <div class="bg-white p-4 rounded-3 border shadow-sm">
+          <h2 id="nuevo-titulo" class="h4 mb-3 fw-bold">Nuevo movimiento</h2>
           
-          <button type="button" class="btn btn-primary" disabled>Guardar (pendiente)</button>
-        </form>
+          <form id="form-movimiento">
+            <div class="mb-3">
+              <label for="tipo" class="form-label fw-medium">Tipo</label>
+              <select id="tipo" name="tipo" class="form-select" required>
+                <option value="">Seleccionar...</option>
+                <option value="ingreso">Ingreso</option>
+                <option value="gasto">Gasto</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="monto" class="form-label fw-medium">Monto (CLP)</label>
+              <input id="monto" name="monto" type="number" min="1" class="form-control" placeholder="15000" required>
+            </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label fw-medium">Descripción</label>
+              <input id="descripcion" name="descripcion" type="text" class="form-control" placeholder="Ej.: Supermercado" required>
+            </div>
+            <div class="mb-3">
+              <label for="categoria" class="form-label fw-medium">Categoría</label>
+              <select id="categoria" name="categoria" class="form-select" required>
+                <option value="">Seleccionar...</option>
+                <option>Alimentación</option>
+                <option>Transporte</option>
+                <option>Vivienda</option>
+                <option>Entretenimiento</option>
+                <option>Otros</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="fecha" class="form-label fw-medium">Fecha</label>
+              <input id="fecha" name="fecha" type="date" lang="es-CL" class="form-control" required>
+            </div>
+            <p class="text-secondary small mb-3">Formulario de prueba: todavía no almacena movimientos.</p>
+            
+            <button type="button" class="btn btn-primary w-100 fw-medium" disabled>Guardar (pendiente)</button>
+          </form>
+        </div>
       </section>
+
+      <!-- Tabla Historial -->
       <section class="col-12 col-lg-7" aria-labelledby="historial-titulo">
-        <h2 id="historial-titulo" class="h4">Historial</h2>
-        
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Descripción</th>
-                <th>Tipo</th>
-                <th>Monto</th>
-              </tr>
-            </thead>
-            <tbody id="tabla-movimientos">
-              <tr>
-                <td colspan="4" class="text-secondary">Sin registros todavía</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="bg-white p-4 rounded-3 border shadow-sm h-100">
+          <h2 id="historial-titulo" class="h4 mb-3 fw-bold">Historial</h2>
+          
+          <div class="table-responsive">
+            <table class="table table-hover align-middle border-top">
+              <thead class="table-light">
+                <tr>
+                  <th>Fecha</th>
+                  <th>Descripción</th>
+                  <th>Tipo</th>
+                  <th class="text-end">Monto</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-movimientos">
+                <tr>
+                  <td colspan="4" class="text-center text-secondary py-4">Sin registros todavía</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
     </div>
   </main>
-  <!--   OJO AQUI mejorar el footer y repetirlo igual en todas las paginas. -->
-  <footer class="border-top mt-auto py-3 bg-white">
-    <div class="container small text-secondary">
-      Ahorra · Equipo NovaWeb · Interfaz de Usuario
+
+  <!-- Footer -->
+  <footer class="border-top mt-auto py-4 bg-white">
+    <div class="container text-center text-secondary small">
+      <div class="mb-2">
+        <a href="index.html" class="text-decoration-none text-secondary me-3">Inicio</a>
+        <a href="ingresos-gastos.html" class="text-decoration-none text-secondary me-3">Ingresos y Gastos</a>
+        <a href="metas-ahorro.html" class="text-decoration-none text-secondary me-3">Metas de Ahorro</a>
+        <a href="estadisticas.html" class="text-decoration-none text-secondary">Estadísticas</a>
+      </div>
+      <p class="mb-0">© 2026 Ahorra · Equipo NovaWeb · Proyecto Finanzas Personales</p>
     </div>
   </footer>
-  <!-- EL JS correspondiente le toca al zhamir -->
+
   <script src="assets/js/main.js" defer></script>
 </body>
 

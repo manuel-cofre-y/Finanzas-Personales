@@ -10,33 +10,57 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-light-subtle">
   <a class="visually-hidden-focusable" href="#contenido">Saltar al contenido</a>
-  <header class="container pt-3">
-    <nav class="navegacion-provisional" aria-label="Navegación provisional">
-      <a href="index.html"><strong>Ahorra</strong></a>
-      <a href="index.html">Inicio</a>
-      <a href="ingresos-gastos.html">Ingresos y gastos</a>
-      <a href="metas-ahorro.html">Metas de ahorro</a>
-      <a href="estadisticas.html" aria-current="page">Estadísticas</a>
-    </nav>
-  </header>
-  <main id="contenido" class="container py-4 flex-grow-1">
-    <h1>Estadísticas</h1>
-    <p class="text-secondary">En esta sección se mostrarán los gastos por categoría y su comparación mensual.</p>
-    <div class="row g-3">
-      <section class="col-12 col-md-6" aria-labelledby="grafico-categorias-titulo">
-        <h2 id="grafico-categorias-titulo" class="h4">Gastos por categoría</h2>
-        
-        <div class="grafico-pendiente border rounded text-secondary p-3">Gráfico pendiente</div>
-      </section>
-      <section class="col-12 col-md-6" aria-labelledby="grafico-periodo-titulo">
-        <h2 id="grafico-periodo-titulo" class="h4">Ingresos versus gastos</h2>
   
-        <div class="grafico-pendiente border rounded text-secondary p-3">Gráfico pendiente</div>
+  <header class="bg-white border-bottom sticky-top shadow-sm">
+    <div class="container navbar navbar-expand navbar-light py-2">
+      <a class="navbar-brand fw-bold text-primary fs-4 m-0 me-4" href="index.html">Ahorra</a>
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="ingresos-gastos.html">Ingresos y gastos</a></li>
+        <li class="nav-item"><a class="nav-link" href="metas-ahorro.html">Metas de ahorro</a></li>
+        <li class="nav-item"><a class="nav-link active fw-bold" href="estadisticas.html" aria-current="page">Estadísticas</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="contenido" class="container py-4 flex-grow-1">
+    <h1 class="mb-1 fw-bold text-dark">Estadísticas</h1>
+    <p class="text-secondary mb-4">En esta sección se mostrarán los gastos por categoría y su comparación mensual.</p>
+    
+    <div class="row g-4">
+      <section class="col-12 col-md-6" aria-labelledby="grafico-categorias-titulo">
+        <div class="bg-white p-4 rounded-3 border shadow-sm h-100">
+          <h2 id="grafico-categorias-titulo" class="h4 mb-3 fw-bold">Gastos por categoría</h2>
+          <div class="grafico-pendiente border rounded-3 text-secondary p-5 text-center bg-light">
+            Gráfico pendiente
+          </div>
+        </div>
+      </section>
+
+      <section class="col-12 col-md-6" aria-labelledby="grafico-periodo-titulo">
+        <div class="bg-white p-4 rounded-3 border shadow-sm h-100">
+          <h2 id="grafico-periodo-titulo" class="h4 mb-3 fw-bold">Ingresos versus gastos</h2>
+          <div class="grafico-pendiente border rounded-3 text-secondary p-5 text-center bg-light">
+            Gráfico pendiente
+          </div>
+        </div>
       </section>
     </div>
   </main>
+
+  <footer class="border-top mt-auto py-4 bg-white">
+    <div class="container text-center text-secondary small">
+      <div class="mb-2">
+        <a href="index.html" class="text-decoration-none text-secondary me-3">Inicio</a>
+        <a href="ingresos-gastos.html" class="text-decoration-none text-secondary me-3">Ingresos y Gastos</a>
+        <a href="metas-ahorro.html" class="text-decoration-none text-secondary me-3">Metas de Ahorro</a>
+        <a href="estadisticas.html" class="text-decoration-none text-secondary">Estadísticas</a>
+      </div>
+      <p class="mb-0">© 2026 Ahorra · Equipo NovaWeb · Proyecto Finanzas Personales</p>
+    </div>
+  </footer>
 
   <script src="assets/js/main.js" defer></script>
 </body>

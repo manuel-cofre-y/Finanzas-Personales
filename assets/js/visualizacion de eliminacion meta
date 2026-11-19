@@ -1,0 +1,90 @@
+//visualizacion_eliminacion_meta
+
+const actualizarMetas = () => {
+
+    const lista = document.getElementById("lista-metas");
+
+    if (!lista) return;
+
+    lista.replaceChildren();
+
+    if (metas.length === 0) {
+        lista.textContent = "Sin metas creadas todavía.";
+        lista.className = "border rounded p-4 text-secondary";
+        return;
+    }
+
+    lista.className = "row g-3";
+
+    metas.forEach(meta => {
+
+        const progreso = Math.min(
+            100,
+            (meta.acumulado / meta.objetivo) * 100
+        );
+
+        const columna = document.createElement("div");
+        columna.className = "col-12";
+
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "border rounded p-3";
+
+        const titulo = crearElemento("h3", meta.nombre, "h5");
+
+        const cantidades = crearElemento(
+            "p",
+            `${formatoCLP(meta.acumulado)} de ${formatoCLP(meta.objetivo)}`
+        );
+
+        const porcentaje = crearElemento(
+            "p",
+            `${progreso.toFixed(1)}% completado`,
+            "small text-secondary"
+        );
+
+        const barra = document.createElement("div");
+        barra.className = "progress";
+
+        barra.setAttribute("role", "progressbar");
+        barra.setAttribute("aria-label", `Progreso de ${meta.nombre}`);
+        barra.setAttribute("aria-valuenow", progreso.toFixed(1));
+        barra.setAttribute("aria-valuemin", "0");
+        barra.setAttribute("aria-valuemax", "100");
+
+        const avance = document.createElement("div");
+        avance.className = "progress-bar";
+        avance.style.width = `${progreso}%`;
+
+        barra.appendChild(avance);
+
+        const boton = crearElemento(
+            "button",
+            "Eliminar meta",
+            "btn btn-sm btn-outline-danger mt-3"
+        );
+
+        boton.type = "button";
+
+        boton.addEventListener("click", () => {
+
+            if (!confirm("¿Deseas eliminar esta meta?")) return;
+
+            metas = metas.filter(m => m.id !== meta.id);
+
+            guardarDatos("ahorra_metas", metas);
+
+            actualizarMetas();
+        });
+
+        tarjeta.append(
+            titulo,
+            cantidades,
+            barra,
+            porcentaje,
+            boton
+        );
+
+        columna.appendChild(tarjeta);
+        lista.appendChild(columna);
+    });
+};

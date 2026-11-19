@@ -1,0 +1,59 @@
+//actualizacion de pagina
+
+const actualizarInicio = () => {
+
+    const resumen = document.querySelector(
+        '[aria-labelledby="titulo-resumen"]'
+    );
+
+    if (!resumen) return;
+
+    const totales = calcularTotales();
+    const tarjetas = resumen.querySelectorAll(".fs-4");
+
+    tarjetas[0].textContent = formatoCLP(totales.ingresos);
+    tarjetas[1].textContent = formatoCLP(totales.gastos);
+    tarjetas[2].textContent = formatoCLP(totales.disponible);
+
+    const seccion = document.querySelector(
+        '[aria-labelledby="titulo-ultimos"]'
+    );
+
+    if (!seccion) return;
+
+    const mensaje = seccion.querySelector("p");
+
+    if (movimientos.length === 0) {
+        mensaje.textContent = "Aún no hay movimientos registrados";
+        return;
+    }
+
+    const lista = document.createElement("div");
+    lista.className = "list-group mb-3";
+
+    movimientos.slice(-5).reverse().forEach(movimiento => {
+
+        const item = document.createElement("div");
+
+        item.className =
+            "list-group-item d-flex justify-content-between align-items-center";
+
+        const descripcion = crearElemento(
+            "span",
+            `${movimiento.descripcion} (${movimiento.fecha})`
+        );
+
+        const monto = crearElemento(
+            "strong",
+            `${movimiento.tipo === "ingreso" ? "+" : "-"}${formatoCLP(movimiento.monto)}`,
+            movimiento.tipo === "ingreso"
+                ? "text-success"
+                : "text-danger"
+        );
+
+        item.append(descripcion, monto);
+        lista.appendChild(item);
+    });
+
+    mensaje.replaceWith(lista);
+};

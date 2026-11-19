@@ -1,0 +1,73 @@
+//historial de movimiento
+
+const actualizarHistorial = () => {
+
+    const tabla = document.getElementById("tabla-movimientos");
+
+    if (!tabla) return;
+
+    tabla.replaceChildren();
+
+    if (movimientos.length === 0) {
+
+        const fila = document.createElement("tr");
+
+        const celda = crearElemento(
+            "td",
+            "Sin registros todavía",
+            "text-secondary"
+        );
+
+        celda.colSpan = 5;
+
+        fila.appendChild(celda);
+        tabla.appendChild(fila);
+
+        return;
+    }
+
+    [...movimientos].reverse().forEach(movimiento => {
+
+        const fila = document.createElement("tr");
+
+        const valores = [
+            movimiento.fecha,
+            movimiento.descripcion,
+            movimiento.tipo === "ingreso" ? "ingreso" : "gasto",
+            formatoCLP(movimiento.monto)
+        ];
+
+        valores.forEach(valor => {
+            fila.appendChild(crearElemento("td", valor));
+        });
+
+        const celdaAccion = document.createElement("td");
+
+        const boton = crearElemento(
+            "button",
+            "Eliminar",
+            "btn btn-sm btn-outline-danger"
+        );
+
+        boton.type = "button";
+
+        boton.addEventListener("click", () => {
+
+            if (!confirm("¿Deseas eliminar este movimiento?")) return;
+
+            movimientos = movimientos.filter(
+                m => m.id !== movimiento.id
+            );
+
+            guardarDatos("ahorra_movimientos", movimientos);
+
+            actualizarHistorial();
+            actualizarInicio();
+            actualizarEstadisticas();
+        });
+
+        celdaAccion.appendChild(boton);
+        fila.appendChild(celdaAccion);
+        tabla.appendChild(fila);
+    });
+};
