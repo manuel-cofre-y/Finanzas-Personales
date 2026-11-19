@@ -26,7 +26,6 @@
       return true;
     } catch (error) {
       console.error("No fue posible guardar los datos:", error);
-      alert("No se pudieron guardar los datos en este navegador. Revisa el almacenamiento disponible.");
       return false;
     }
   };
@@ -59,6 +58,31 @@
       return crypto.randomUUID();
     }
     return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  };
+
+  // Alertas visuales de Bootstrap 5.3, sin ventanas emergentes del navegador.
+  // El aviso aparece debajo del botón del formulario y se puede cerrar.
+  const mostrarAviso = (formulario, mensaje, variante = "success") => {
+    const anterior = formulario.querySelector('[data-aviso-bootstrap]');
+    if (anterior) anterior.remove();
+
+    const esError = variante === "danger";
+    const aviso = document.createElement("div");
+    aviso.dataset.avisoBootstrap = "";
+    aviso.className = `alert alert-${esError ? "danger" : "success"} alert-dismissible d-flex align-items-start gap-2 mt-3 mb-0`;
+    aviso.setAttribute("role", esError ? "alert" : "status");
+    if (!esError) aviso.setAttribute("aria-live", "polite");
+
+    const simbolo = crearElemento("span", esError ? "!" : "✓", "fw-bold");
+    simbolo.setAttribute("aria-hidden", "true");
+    const texto = crearElemento("span", mensaje, "flex-grow-1");
+    const cerrar = crearElemento("button", "", "btn-close");
+    cerrar.type = "button";
+    cerrar.setAttribute("aria-label", "Cerrar aviso");
+    cerrar.addEventListener("click", () => aviso.remove());
+
+    aviso.append(simbolo, texto, cerrar);
+    formulario.appendChild(aviso);
   };
 
   // Cálculos de ingresos, gastos y saldo disponible.
@@ -293,18 +317,21 @@
 
       if (!["ingreso", "gasto"].includes(tipo) || !Number.isFinite(monto) || monto <= 0 ||
           !descripcion || !categoria || !/^\d{4}-\d{2}-\d{2}$/.test(String(fecha))) {
-        alert("Por favor, completa correctamente todos los campos.");
+        mostrarAviso(formMovimiento, "Por favor, completa correctamente todos los campos.", "danger");
         return;
       }
       const movimiento = { id: nuevoId(), tipo, monto, descripcion, categoria, fecha };
       const siguientes = [...movimientos, movimiento];
-      if (!guardarDatos(CLAVE_MOVIMIENTOS, siguientes)) return;
+      if (!guardarDatos(CLAVE_MOVIMIENTOS, siguientes)) {
+        mostrarAviso(formMovimiento, "No se pudieron guardar los datos en este navegador. Revisa el almacenamiento disponible.", "danger");
+        return;
+      }
       movimientos = siguientes;
       formMovimiento.reset();
       actualizarHistorial();
       actualizarInicio();
       actualizarEstadisticas();
-      alert("Movimiento registrado correctamente.");
+      mostrarAviso(formMovimiento, "Movimiento registrado correctamente.");
     });
   }
 
@@ -326,15 +353,18 @@
       const acumulado = Number(valorAcumulado === "" ? 0 : valorAcumulado);
 
       if (!nombre || !Number.isFinite(objetivo) || !Number.isFinite(acumulado) || objetivo <= 0 || acumulado < 0) {
-        alert("Ingresa datos válidos para la meta.");
+        mostrarAviso(formMeta, "Ingresa datos válidos para la meta.", "danger");
         return;
       }
       const siguientes = [...metas, { id: nuevoId(), nombre, objetivo, acumulado }];
-      if (!guardarDatos(CLAVE_METAS, siguientes)) return;
+      if (!guardarDatos(CLAVE_METAS, siguientes)) {
+        mostrarAviso(formMeta, "No se pudo guardar la meta en este navegador. Revisa el almacenamiento disponible.", "danger");
+        return;
+      }
       metas = siguientes;
       formMeta.reset();
       actualizarMetas();
-      alert("Meta creada correctamente.");
+      mostrarAviso(formMeta, "Meta creada correctamente.");
     });
   }
 
