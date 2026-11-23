@@ -1,5 +1,4 @@
-/* RF-06: consejos prácticos de ahorro basados en los movimientos registrados.
-   Este archivo solo lee los datos: no modifica ingresos, gastos, presupuestos ni metas. */
+
 (() => {
   "use strict";
 

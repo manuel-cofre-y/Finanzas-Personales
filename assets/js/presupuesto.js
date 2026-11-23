@@ -1,4 +1,3 @@
-/* RF-04: presupuesto mensual de gastos. Solo HTML, Bootstrap y JavaScript. */
 (() => {
   'use strict';
 
