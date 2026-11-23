@@ -1,0 +1,48 @@
+//metas de ahorro
+
+const formMeta = document.getElementById("form-meta");
+
+if (formMeta) {
+
+    formMeta.addEventListener("submit", (evento) => {
+
+        evento.preventDefault();
+
+        const nombre = document.getElementById("nombre-meta")
+            .value.trim();
+
+        const objetivo = Number(
+            document.getElementById("objetivo").value
+        );
+
+        const acumulado = Number(
+            document.getElementById("acumulado").value
+        );
+
+        if (
+            !nombre ||
+            !Number.isFinite(objetivo) ||
+            !Number.isFinite(acumulado) ||
+            objetivo <= 0 ||
+            acumulado < 0
+        ) {
+            alert("Ingresa datos válidos para la meta.");
+            return;
+        }
+
+        metas.push({
+            id: Date.now(),
+            nombre,
+            objetivo,
+            acumulado
+        });
+
+        guardarDatos("ahorra_metas", metas);
+
+        formMeta.reset();
+
+        actualizarMetas();
+
+        alert("Meta creada correctamente");
+    });
+}

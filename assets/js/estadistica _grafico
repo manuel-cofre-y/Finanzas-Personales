@@ -1,0 +1,115 @@
+//estadistica grafico:
+
+
+const actualizarEstadisticas = () => {
+
+    const graficos = document.querySelectorAll(".grafico-pendiente");
+
+    if (graficos.length < 2) return;
+
+    const graficoCategorias = graficos[0];
+    const graficoTotales = graficos[1];
+
+    graficoCategorias.replaceChildren();
+
+    const categorias = {};
+
+    movimientos
+        .filter(m => m.tipo === "gasto")
+        .forEach(m => {
+
+            categorias[m.categoria] =
+                (categorias[m.categoria] || 0) + Number(m.monto);
+
+        });
+
+    const valores = Object.entries(categorias);
+
+    const maximoCategoria = Math.max(
+        1,
+        ...valores.map(([, monto]) => monto)
+    );
+
+    if (valores.length === 0) {
+
+        graficoCategorias.textContent =
+            "Todavía no hay gastos registrados.";
+
+    } else {
+
+        valores.forEach(([categoria, monto]) => {
+
+            const contenedor = document.createElement("div");
+            contenedor.className = "mb-3";
+
+            const etiqueta = crearElemento(
+                "div",
+                `${categoria}: ${formatoCLP(monto)}`,
+                "small mb-1"
+            );
+
+            const barra = document.createElement("div");
+            barra.className = "progress";
+
+            const avance = document.createElement("div");
+            avance.className = "progress-bar bg-primary";
+
+            avance.style.width =
+                `${(monto / maximoCategoria) * 100}%`;
+
+            barra.appendChild(avance);
+
+            contenedor.append(etiqueta, barra);
+
+            graficoCategorias.appendChild(contenedor);
+        });
+    }
+
+    graficoTotales.replaceChildren();
+
+    const totales = calcularTotales();
+
+    const maximo = Math.max(
+        1,
+        totales.ingresos,
+        totales.gastos
+    );
+
+    [
+        {
+            nombre: "Ingresos",
+            monto: totales.ingresos,
+            clase: "bg-success"
+        },
+        {
+            nombre: "Gastos",
+            monto: totales.gastos,
+            clase: "bg-danger"
+        }
+    ].forEach(dato => {
+
+        const contenedor = document.createElement("div");
+        contenedor.className = "mb-3";
+
+        const etiqueta = crearElemento(
+            "div",
+            `${dato.nombre}: ${formatoCLP(dato.monto)}`,
+            "small mb-1"
+        );
+
+        const barra = document.createElement("div");
+        barra.className = "progress";
+
+        const avance = document.createElement("div");
+        avance.className = `progress-bar ${dato.clase}`;
+
+        avance.style.width =
+            `${(dato.monto / maximo) * 100}%`;
+
+        barra.appendChild(avance);
+
+        contenedor.append(etiqueta, barra);
+
+        graficoTotales.appendChild(contenedor);
+    });
+};

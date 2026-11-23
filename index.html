@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="es-CL">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Proyecto Ahorra: control de finanzas personales.">
   <title>Inicio | Ahorra</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
@@ -13,14 +15,23 @@
   <a class="visually-hidden-focusable" href="#contenido">Saltar al contenido</a>
 
   <header class="bg-white border-bottom sticky-top shadow-sm">
-    <nav class="container d-flex flex-wrap align-items-center gap-2 py-2" aria-label="Navegación principal">
-      <a class="navbar-brand fw-bold text-primary fs-4 m-0 me-md-4" href="index.html">Ahorra</a>
-      <ul class="nav flex-wrap gap-2">
-        <li class="nav-item"><a class="nav-link active fw-bold" href="index.html" aria-current="page">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="ingresos-gastos.html">Ingresos y gastos</a></li>
-        <li class="nav-item"><a class="nav-link" href="metas-ahorro.html">Metas de ahorro</a></li>
-        <li class="nav-item"><a class="nav-link" href="estadisticas.html">Estadísticas</a></li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-light py-2" aria-label="Navegación principal">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">Ahorra</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
+          aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir o cerrar menú de navegación">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav ms-auto gap-lg-2">
+            <li class="nav-item"><a class="nav-link active fw-bold" href="index.html" aria-current="page">Inicio</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="ingresos-gastos.html">Ingresos y gastos</a></li>
+            <li class="nav-item"><a class="nav-link" href="metas-ahorro.html">Metas de ahorro</a></li>
+            <li class="nav-item"><a class="nav-link" href="estadisticas.html">Estadísticas</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -31,22 +42,104 @@
     <section aria-labelledby="titulo-resumen" class="mb-5">
       <h2 id="titulo-resumen" class="h4 mb-3 fw-bold">Resumen financiero</h2>
       <div class="row g-3">
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-xl-3">
           <div class="bg-success-subtle border border-success-subtle rounded-3 p-4 shadow-sm text-success-emphasis">
             <h3 class="h6 fw-semibold mb-2">Ingresos</h3>
             <p class="fs-3 mb-0 fw-bold">$ —</p>
           </div>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-xl-3">
           <div class="bg-danger-subtle border border-danger-subtle rounded-3 p-4 shadow-sm text-danger-emphasis">
             <h3 class="h6 fw-semibold mb-2">Gastos</h3>
             <p class="fs-3 mb-0 fw-bold">$ —</p>
           </div>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-xl-3">
           <div class="bg-primary-subtle border border-primary-subtle rounded-3 p-4 shadow-sm text-primary-emphasis">
             <h3 class="h6 fw-semibold mb-2">Disponible</h3>
-            <p class="fs-3 mb-0 fw-bold">$ —</p>
+            <p id="saldo-disponible-valor" class="fs-3 mb-0 fw-bold">$ —</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <div class="bg-info-subtle border border-info-subtle rounded-3 p-4 shadow-sm text-info-emphasis">
+            <h3 class="h6 fw-semibold mb-2">Ahorro reservado</h3>
+            <p id="ahorro-reservado-valor" class="fs-3 mb-0 fw-bold">$ —</p>
+          </div>
+        </div>
+      </div>
+      <p class="small text-secondary mt-2 mb-0">El saldo disponible ya descuenta el dinero destinado a las metas de
+        ahorro. Ahorrar no se considera un gasto.</p>
+    </section>
+
+
+    <section aria-labelledby="titulo-presupuesto" class="mb-5">
+      <div class="bg-white border rounded-3 p-4 shadow-sm">
+        <h2 id="titulo-presupuesto" class="h4 mb-3 fw-bold">Presupuesto mensual</h2>
+        <p class="text-secondary">Define cuánto deseas gastar como máximo durante cada mes.</p>
+
+        <form id="form-presupuesto" class="row g-3 align-items-end">
+          <div class="col-12 col-md-4">
+            <label for="periodo-presupuesto" class="form-label fw-medium">Mes del presupuesto</label>
+            <input id="periodo-presupuesto" type="month" class="form-control" required>
+          </div>
+          <div class="col-12 col-md-4">
+            <label for="limite-presupuesto" class="form-label fw-medium">Límite de gastos (CLP)</label>
+            <input id="limite-presupuesto" type="number" min="1" step="1" class="form-control" placeholder="Ej.: 300000"
+              required>
+          </div>
+          <div class="col-12 col-md-4">
+            <button type="submit" class="btn btn-primary w-100">Guardar presupuesto</button>
+          </div>
+        </form>
+        <p id="presupuesto-aviso" role="status" aria-live="polite" class="small mt-2 mb-0"></p>
+
+        <div class="row g-3 mt-2">
+          <div class="col-12 col-md-4">
+            <div class="bg-light border rounded-3 p-3 h-100">
+              <h3 class="h6 text-secondary">Límite del mes</h3>
+              <p id="presupuesto-limite-valor" class="fs-5 fw-bold mb-0">Sin definir</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="bg-light border rounded-3 p-3 h-100">
+              <h3 class="h6 text-secondary">Gastado durante el mes</h3>
+              <p id="presupuesto-gastado-valor" class="fs-5 fw-bold mb-0">$0</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="bg-light border rounded-3 p-3 h-100">
+              <h3 class="h6 text-secondary">Presupuesto restante</h3>
+              <p id="presupuesto-restante-valor" class="fs-5 fw-bold mb-0">—</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="presupuesto-barra" class="progress mt-3" role="progressbar"
+          aria-label="Porcentaje de presupuesto gastado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div id="presupuesto-progreso" class="progress-bar bg-primary" style="width:0%"></div>
+        </div>
+        <p id="presupuesto-detalle" class="small text-secondary mt-2 mb-0" aria-live="polite"></p>
+      </div>
+    </section>
+
+
+    <section id="consejos" aria-labelledby="titulo-consejos" class="mb-5">
+      <div class="bg-white border rounded-3 p-4 shadow-sm">
+        <h2 id="titulo-consejos" class="h4 mb-3 fw-bold">Consejos de ahorro</h2>
+        <p class="text-secondary">Consulta recomendaciones prácticas basadas en los gastos, presupuesto y metas que
+          hayas registrado.</p>
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-12 col-sm-6 col-md-4">
+            <label for="mes-consejos" class="form-label fw-medium">Mes que deseas revisar</label>
+            <input id="mes-consejos" type="month" class="form-control" required>
+          </div>
+        </div>
+        <p id="consejos-resumen" class="small text-secondary mb-3" role="status" aria-live="polite">
+          Selecciona un mes para ver consejos de ahorro.
+        </p>
+        <div id="consejos-lista" class="row g-3">
+          <div class="col-12">
+            <p class="text-secondary">Registra movimientos para recibir sugerencias relacionadas con tus finanzas.</p>
           </div>
         </div>
       </div>
@@ -54,7 +147,8 @@
 
     <section aria-labelledby="titulo-ultimos">
       <h2 id="titulo-ultimos" class="h4">Movimientos recientes</h2>
-      <p class="border rounded p-4 text-secondary">Aún no hay movimientos. El historial se implementará más adelante.</p>
+      <p class="border rounded p-4 text-secondary">Aún no hay movimientos. El historial se implementará más adelante.
+      </p>
       <a href="ingresos-gastos.html" class="btn btn-primary mt-2">Ir a ingresos y gastos</a>
     </section>
   </main>
@@ -71,6 +165,12 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/saldo-ahorro.js" defer></script>
+  <script src="assets/js/presupuesto.js" defer></script>
+  <script src="assets/js/consejos-ahorro.js" defer></script>
+  <script src="assets/js/alertas-presupuesto.js" defer></script>
 </body>
+
 </html>

@@ -12,29 +12,47 @@
 
 <body class="d-flex flex-column min-vh-100 bg-light-subtle">
   <a class="visually-hidden-focusable" href="#contenido">Saltar al contenido</a>
-  
-  <!-- Header Unificado -->
+
   <header class="bg-white border-bottom sticky-top shadow-sm">
-    <div class="container navbar navbar-expand navbar-light py-2">
-      <a class="navbar-brand fw-bold text-primary fs-4 m-0 me-4" href="index.html">Ahorra</a>
-      <ul class="navbar-nav gap-2">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="ingresos-gastos.html">Ingresos y gastos</a></li>
-        <li class="nav-item"><a class="nav-link active fw-bold" href="metas-ahorro.html" aria-current="page">Metas de ahorro</a></li>
-        <li class="nav-item"><a class="nav-link" href="estadisticas.html">Estadísticas</a></li>
-      </ul>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light py-2" aria-label="Navegación principal">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">Ahorra</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
+          aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir o cerrar menú de navegación">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav ms-auto gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="ingresos-gastos.html">Ingresos y gastos</a></li>
+            <li class="nav-item"><a class="nav-link active fw-bold" href="metas-ahorro.html" aria-current="page">Metas
+                de ahorro</a></li>
+            <li class="nav-item"><a class="nav-link" href="estadisticas.html">Estadísticas</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
 
   <!-- Contenido principal -->
   <main id="contenido" class="container py-4 flex-grow-1">
     <h1 class="mb-1 fw-bold text-dark">Metas de ahorro</h1>
-    <p class="text-secondary mb-4">Aquí se podrán crear y consultar objetivos de ahorro.</p>
+    <p class="text-secondary mb-4">Crea objetivos y aparta dinero para conseguirlos.</p>
+
+    <section aria-labelledby="saldo-ahorro-titulo" class="mb-4">
+      <div class="bg-primary-subtle border border-primary-subtle rounded-3 shadow-sm p-4">
+        <h2 id="saldo-ahorro-titulo" class="h5 fw-bold mb-2">Saldo disponible para ahorrar</h2>
+        <p id="saldo-para-ahorrar" class="fs-3 fw-bold text-primary mb-1">$ —</p>
+        <p class="small text-secondary mb-0">Cada aporte se descuenta del saldo disponible, sin contabilizarlo como
+          gasto.</p>
+      </div>
+    </section>
 
     <!-- Crear Meta -->
     <section aria-labelledby="crear-meta-titulo" class="mb-4">
       <div class="bg-white p-4 rounded-3 border shadow-sm">
         <h2 id="crear-meta-titulo" class="h4 mb-3 fw-bold">Crear una meta</h2>
+        <p class="small text-secondary">Si introduces un ahorro inicial, también se descontará del saldo disponible.</p>
         <form id="form-meta" class="row g-3">
           <div class="col-12 col-md-6">
             <label class="form-label fw-medium" for="nombre-meta">Nombre de la meta</label>
@@ -66,7 +84,6 @@
     </section>
   </main>
 
-  <!-- Footer Unificado -->
   <footer class="border-top mt-auto py-4 bg-white">
     <div class="container text-center text-secondary small">
       <div class="mb-2">
@@ -79,7 +96,9 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/saldo-ahorro.js" defer></script>
 </body>
 
 </html>
