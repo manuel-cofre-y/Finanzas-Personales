@@ -1,3 +1,4 @@
+/* RF-04: presupuesto mensual de gastos. Solo HTML, Bootstrap y JavaScript. */
 (() => {
   'use strict';
 
@@ -66,6 +67,7 @@
       Number.isFinite(guardado) && guardado > 0;
     const gastado = gastosDelMes(mes);
 
+    // Al cambiar de mes, se recupera el presupuesto que fue guardado para ese mes.
     limite.value = tieneLimite ? String(guardado) : '';
     valorLimite.textContent = tieneLimite ? dinero.format(guardado) : 'Sin definir';
     valorGastado.textContent = dinero.format(gastado);
